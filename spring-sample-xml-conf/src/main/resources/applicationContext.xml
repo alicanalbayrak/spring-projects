@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:property-placeholder location="app.properties"/>
+
+    <!-- Repositories -->
+    <bean name="customerRepository" class="com.gilmour.repository.HibernateCustomerRepositoryImpl"/>
+    <bean name="placeRepository" class="com.gilmour.repository.HibernatePlaceRepositoryImpl"/>
+    <bean name="hibernateItemRepository" class="com.gilmour.repository.HibernateItemRepositoryImpl">
+        <property name="dbUsername" value="${dbUsername}"/>
+    </bean>
+
+    <!-- Services -->
+    <!--setter injection example-->
+    <bean name="customerService" class="com.gilmour.service.CustomerServiceImpl">
+        <property name="customerRepository" ref="customerRepository"/>
+    </bean>
+
+    <!--constructor injection example-->
+    <bean name="placeService" class="com.gilmour.service.PlaceServiceImpl">
+        <constructor-arg index="0" ref="placeRepository"/>
+    </bean>
+
+    <!--autowire injection example-->
+    <bean name="itemService" class="com.gilmour.service.ItemServiceImpl" autowire="byType">
+    </bean>
+
+
+</beans>
