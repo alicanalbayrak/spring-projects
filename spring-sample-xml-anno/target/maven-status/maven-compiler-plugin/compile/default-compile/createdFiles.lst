@@ -1,6 +1,0 @@
-com\gilmour\repository\ICustomerRepository.class
-com\gilmour\repository\HibernateCustomerRepositoryImpl.class
-App.class
-com\gilmour\model\Customer.class
-com\gilmour\service\ICustomerService.class
-com\gilmour\service\CustomerServiceImpl.class
