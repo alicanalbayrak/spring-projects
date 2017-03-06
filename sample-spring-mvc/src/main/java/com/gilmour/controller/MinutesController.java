@@ -13,8 +13,10 @@ public class MinutesController {
 
 		System.out.println("exercise: " + exercise.getMinutes());
 
+		return "addMinutes";
+
 		// ByPasses view resolver
-		return "forward:addMoreMinutes.html";
+		//		return "forward:addMoreMinutes.html";
 
 		// Creates a new request
 		// return "redirect:addMoreMinutes.html";
