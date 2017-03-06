@@ -17,6 +17,36 @@
 
     <context:component-scan base-package="com.gilmour.controller"/>
 
+    <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+        <property name="order" value="1"/>
+        <property name="contentNegotiationManager">
+            <bean class="org.springframework.web.accept.ContentNegotiationManager">
+                <constructor-arg>
+                    <bean class="org.springframework.web.accept.PathExtensionContentNegotiationStrategy">
+                        <constructor-arg>
+                            <map>
+                                <entry key="json" value="application/json"/>
+                                <entry key="xml" value="application/xml"/>
+                            </map>
+                        </constructor-arg>
+                    </bean>
+                </constructor-arg>
+            </bean>
+        </property>
+        <property name="defaultViews">
+            <list>
+                <bean class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"/>
+                <bean class="org.springframework.web.servlet.view.xml.MarshallingView">
+                    <constructor-arg>
+                        <bean class="org.springframework.oxm.xstream.XStreamMarshaller">
+                            <property name="autodetectAnnotations" value="true"/>
+                        </bean>
+                    </constructor-arg>
+                </bean>
+            </list>
+        </property>
+    </bean>
+
 
     <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource"
           p:basename="messages"
@@ -32,7 +62,11 @@
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"
           p:prefix="/WEB-INF/jsp/"
-          p:suffix=".jsp"/>
+          p:suffix=".jsp"
+          p:order="2"
+    />
 
+
+    <bean class="org.springframework.web.servlet.view.BeanNameViewResolver" p:order="0"/>
 
 </beans>
