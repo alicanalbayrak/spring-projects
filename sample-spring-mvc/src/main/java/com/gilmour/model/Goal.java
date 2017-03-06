@@ -1,10 +1,11 @@
 package com.gilmour.model;
 
-/**
- * Created by alicana on 06/03/2017.
- */
+import org.hibernate.validator.constraints.Range;
+
+
 public class Goal {
 
+	@Range(min = 1, max = 120)
 	private int minutes;
 
 	public int getMinutes() {
