@@ -51,18 +51,18 @@
           </p>
         </div>
         <a class="btn btn-primary" href="addGoal.html">
-          Add Goal »
+          Add Goal
         </a>
         
         <a class="btn btn-primary" href="addMinutes.html">
-          Add Exercise Minutes »
+          Add Exercise Minutes
         </a>
       </div>
       <div>
       </div>
     </div>
     
-    <script src="jquery-1.8.3.js">
+    <script src="jquery-3.1.1.js">
     </script>
     
     <script src="assets/js/bootstrap.js">

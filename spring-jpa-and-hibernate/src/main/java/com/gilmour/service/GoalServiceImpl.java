@@ -1,5 +1,7 @@
 package com.gilmour.service;
 
+import java.util.List;
+
 import com.gilmour.model.Goal;
 import com.gilmour.repository.GoalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,11 @@ public class GoalServiceImpl implements GoalService {
 	@Transactional
 	public Goal saveGoal(Goal goal) {
 		return goalRepository.saveGoal(goal);
+	}
+
+	@Override
+	public List<Goal> findAllGoals() {
+		return goalRepository.loadAll();
 	}
 
 }

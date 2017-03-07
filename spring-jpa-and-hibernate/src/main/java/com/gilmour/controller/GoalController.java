@@ -1,5 +1,7 @@
 package com.gilmour.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import com.gilmour.model.Goal;
@@ -17,9 +19,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 @SessionAttributes("goal")
 public class GoalController {
 
-
-	@Autowired
-	private GoalService goalService;
+	@Autowired private GoalService goalService;
 
 	/**
 	 * Passed by ref. instead of pass-by-ref Pointer back to actual object It will return data back to jsp
@@ -42,14 +42,22 @@ public class GoalController {
 
 		System.out.println("Minutes updated: " + goal.getMinutes());
 
-		if(result.hasErrors()){
+		if (result.hasErrors()) {
 			return "addGoal";
-		}else {
+		} else {
 			goalService.saveGoal(goal);
 		}
-
 
 		return "redirect:addMinutes.html";
 	}
 
+	@RequestMapping(value = "getGoals", method = RequestMethod.GET)
+	public String getGoals(Model model) {
+
+		List<Goal> goals = goalService.findAllGoals();
+
+		model.addAttribute("goals", goals);
+
+		return "getGoals";
+	}
 }

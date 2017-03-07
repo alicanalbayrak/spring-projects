@@ -83,7 +83,7 @@
       </div>
     </div>
 
-     <script src="jquery-1.8.3.js">
+     <script src="jquery-3.1.1.js">
     </script>
     <script src="assets/js/bootstrap.js">
     </script>
