@@ -47,7 +47,7 @@ Language : <a href="?language=en">English</a> | <a href="?language=es">Spanish</
             <td><spring:message code="goal.text"/></td>
             <td><form:input path="minutes"/></td>
             <td>
-                <form:select id="activities" path="activity"></form:select>
+                <form:select id="activities" path="activity"/>
             </td>
         </tr>
         <tr>
