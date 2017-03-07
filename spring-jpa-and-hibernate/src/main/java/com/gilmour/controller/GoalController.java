@@ -3,6 +3,8 @@ package com.gilmour.controller;
 import javax.validation.Valid;
 
 import com.gilmour.model.Goal;
+import com.gilmour.service.GoalService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,6 +16,10 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 @Controller
 @SessionAttributes("goal")
 public class GoalController {
+
+
+	@Autowired
+	private GoalService goalService;
 
 	/**
 	 * Passed by ref. instead of pass-by-ref Pointer back to actual object It will return data back to jsp
@@ -38,7 +44,10 @@ public class GoalController {
 
 		if(result.hasErrors()){
 			return "addGoal";
+		}else {
+			goalService.saveGoal(goal);
 		}
+
 
 		return "redirect:addMinutes.html";
 	}
