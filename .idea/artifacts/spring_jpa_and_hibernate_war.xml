@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="spring-jpa-and-hibernate:war">
+    <output-path>$PROJECT_DIR$/spring-jpa-and-hibernate/target</output-path>
+    <root id="archive" name="SpringJPA.war">
+      <element id="artifact" artifact-name="spring-jpa-and-hibernate:war exploded" />
+    </root>
+  </artifact>
+</component>
