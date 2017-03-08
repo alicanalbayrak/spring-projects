@@ -2,6 +2,7 @@ package com.gilmour.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import com.gilmour.model.Goal;
@@ -26,11 +27,15 @@ public class GoalController {
 	 * Passed by ref. instead of pass-by-ref Pointer back to actual object It will return data back to jsp
 	 */
 	@RequestMapping(value = "addGoal", method = RequestMethod.GET)
-	public String addGoal(Model model) {
+	public String addGoal(Model model, HttpSession session) {
 
-		// Default value -> 10 min
-		Goal goal = new Goal();
-		goal.setMinutes(10);
+		Goal goal = (Goal) session.getAttribute("goal");
+
+		if (goal == null) {
+			// Default value -> 10 min
+			goal = new Goal();
+			goal.setMinutes(10);
+		}
 
 		model.addAttribute("goal", goal);
 		return "addGoal";
@@ -63,14 +68,13 @@ public class GoalController {
 	}
 
 	@RequestMapping(value = "getGoalReports", method = RequestMethod.GET)
-	public String getGoalReports(Model model){
+	public String getGoalReports(Model model) {
 
 		List<GoalReport> goalReports = goalService.findAllGoalReports();
 
 		model.addAttribute("goalReports", goalReports);
 
 		return "getGoalReports";
-
 
 	}
 

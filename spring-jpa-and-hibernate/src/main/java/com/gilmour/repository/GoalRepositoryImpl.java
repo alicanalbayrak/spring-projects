@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import com.gilmour.model.Goal;
 import com.gilmour.model.GoalReport;
@@ -18,8 +19,12 @@ public class GoalRepositoryImpl implements GoalRepository {
 	@Override
 	public Goal saveGoal(Goal goal) {
 
-		em.persist(goal);
-		em.flush();
+		if(goal.getId() == null){
+			em.persist(goal);
+			em.flush();
+		}else{
+			goal = em.merge(goal);
+		}
 
 		return goal;
 	}
@@ -36,8 +41,10 @@ public class GoalRepositoryImpl implements GoalRepository {
 	@Override
 	public List<GoalReport> findAllGoalReports() {
 
-		Query query = em.createQuery("Select new com.gilmour.model.GoalReport(g.minutes, e.minutes, e.activity)"
-				+ "from Goal g, Exercise e where g.id = e.goal.id");
+//		Query query = em.createQuery("Select new com.gilmour.model.GoalReport(g.minutes, e.minutes, e.activity)"
+//				+ "from Goal g, Exercise e where g.id = e.goal.id");
+
+		TypedQuery<GoalReport> query = em.createNamedQuery(Goal.FIND_GOAL_REPORTS, GoalReport.class);
 
 		return query.getResultList();
 	}
