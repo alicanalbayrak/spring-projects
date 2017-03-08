@@ -56,4 +56,8 @@ public class LocationRepository {
 				.setParameter("state", name + "%").getResultList();
 		return locs;
 	}
+
+	public List<Location> findByStateLike(String aNew) {
+		return locationJpaRepository.findByStateLike(aNew);
+	}
 }

@@ -51,6 +51,12 @@ public class LocationPersistenceTests {
 	}
 
 	@Test
+	public void testFindWithLikeQDSL() throws Exception {
+		List<Location> locs = locationRepository.findByStateLike("New%");
+		assertEquals(4, locs.size());
+	}
+
+	@Test
 	@Transactional  //note this is needed because we will get a lazy load exception unless we are in a tx
 	public void testFindWithChildren() throws Exception {
 		Location arizona = locationRepository.find(3L);
