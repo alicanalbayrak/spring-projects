@@ -48,8 +48,16 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
       </profile>
+      <profile default="false" name="Annotation profile for ps-guitar-db" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="ps-guitar-db" />
+      </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="ps-guitar-db" target="1.8" />
       <module name="sample-spring-mvc" target="1.8" />
       <module name="spring-jpa-and-hibernate" target="1.8" />
       <module name="spring-sample" target="1.8" />

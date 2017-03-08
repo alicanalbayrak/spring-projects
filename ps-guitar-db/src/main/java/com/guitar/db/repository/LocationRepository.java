@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.guitar.db.model.Location;
@@ -14,37 +15,35 @@ public class LocationRepository {
 	@PersistenceContext
 	private EntityManager entityManager;
 
+	@Autowired
+	private LocationJpaRepository locationJpaRepository;
+
 	/**
 	 * Create
 	 */
 	public Location create(Location loc) {
-		entityManager.persist(loc);
-		entityManager.flush();
-		return loc;
+		return locationJpaRepository.saveAndFlush(loc);
 	}
 
 	/**
 	 * Update
 	 */
 	public Location update(Location loc) {
-		loc = entityManager.merge(loc);
-		entityManager.flush();
-		return loc;
+		return locationJpaRepository.saveAndFlush(loc);
 	}
 
 	/**
 	 * Delete
 	 */
 	public void delete(Location loc) {
-		entityManager.remove(loc);
-		entityManager.flush();
+		locationJpaRepository.delete(loc);
 	}
 
 	/**
 	 * Find
 	 */
 	public Location find(Long id) {
-		return entityManager.find(Location.class, id);
+		return locationJpaRepository.findOne(id);
 	}
 
 	/**
