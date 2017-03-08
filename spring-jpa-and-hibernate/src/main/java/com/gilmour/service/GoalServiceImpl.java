@@ -3,6 +3,7 @@ package com.gilmour.service;
 import java.util.List;
 
 import com.gilmour.model.Goal;
+import com.gilmour.model.GoalReport;
 import com.gilmour.repository.GoalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +24,11 @@ public class GoalServiceImpl implements GoalService {
 	@Override
 	public List<Goal> findAllGoals() {
 		return goalRepository.loadAll();
+	}
+
+	@Override
+	public List<GoalReport> findAllGoalReports() {
+		return goalRepository.findAllGoalReports();
 	}
 
 }
