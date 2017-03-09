@@ -17,7 +17,7 @@ import javax.persistence.OneToMany;
 
 @Entity
 @NamedNativeQuery(name = "Manufacturer.getAllThatSellAcoustics", 
-		query = "SELECT m.id, m.name, m.foundedDate, m.averageYearlySales, m.location_id as headquarters_id "
+		query = "SELECT m.id, m.name, m.foundedDate, m.averageYearlySales, m.location_id as headquarters_id, m.active "
 	    + "FROM Manufacturer m "
 		+ "LEFT JOIN Model mod ON (m.id = mod.manufacturer_id) "
 		+ "LEFT JOIN ModelType mt ON (mt.id = mod.modeltype_id) "
@@ -30,6 +30,7 @@ public class Manufacturer {
 	private String name;
 	private Date foundedDate;
 	private BigDecimal averageYearlySales;
+	private Boolean active;
 	
 	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name="MANUFACTURER_ID")
@@ -80,5 +81,13 @@ public class Manufacturer {
 
 	public Long getId() {
 		return id;
+	}
+
+	public Boolean getActive() {
+		return active;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
 	}
 }

@@ -5,18 +5,15 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import com.guitar.db.model.Location;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.guitar.db.model.Location;
-
 @Repository
 public class LocationRepository {
-	@PersistenceContext
-	private EntityManager entityManager;
+	@PersistenceContext private EntityManager entityManager;
 
-	@Autowired
-	private LocationJpaRepository locationJpaRepository;
+	@Autowired private LocationJpaRepository locationJpaRepository;
 
 	/**
 	 * Create
@@ -50,14 +47,36 @@ public class LocationRepository {
 	 * Custom finder
 	 */
 	public List<Location> getLocationByStateName(String name) {
-		@SuppressWarnings("unchecked")
-		List<Location> locs = entityManager
-				.createQuery("select l from Location l where l.state like :state")
-				.setParameter("state", name + "%").getResultList();
+		@SuppressWarnings("unchecked") List<Location> locs = entityManager.createQuery("select l from Location l where l.state like :state").setParameter("state", name + "%")
+				.getResultList();
 		return locs;
 	}
 
 	public List<Location> findByStateLike(String aNew) {
 		return locationJpaRepository.findByStateLike(aNew);
+	}
+
+	public List<Location> findByStateOrCountry(String s1, String s2) {
+		return locationJpaRepository.findByStateOrCountry(s1, s2);
+	}
+
+	public List<Location> findByStateAndCountry(String state, String country) {
+		return locationJpaRepository.findByStateAndCountry(state, country);
+	}
+
+	public List<Location> findByStateIsOrCountryEquals(String s1, String s2){
+		return locationJpaRepository.findByStateIsOrCountryEquals(s1,s2);
+	}
+
+	public List<Location> findByStateNot(String state) {
+		return locationJpaRepository.findByStateNot(state);
+	}
+
+	public List<Location> findByStateNotLike(String stateName){
+		return locationJpaRepository.findByStateNotLike(stateName);
+	}
+
+	public List<Location> findByStateStartingWith(String stateName){
+		return locationJpaRepository.findByStateIgnoreCaseStartingWith(stateName);
 	}
 }

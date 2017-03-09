@@ -1,5 +1,6 @@
 package com.guitar.db.repository;
 
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -43,4 +44,5 @@ public class ModelTypeRepository {
 	public ModelType find(Long id) {
 		return modelTypeJpaRepository.findOne(id);
 	}
+
 }

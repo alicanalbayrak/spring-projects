@@ -1,18 +1,16 @@
 package com.guitar.db;
 
-import static org.junit.Assert.assertEquals;
-
 import java.util.Date;
 import java.util.List;
 
+import com.guitar.db.model.Manufacturer;
+import com.guitar.db.repository.ManufacturerRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-import com.guitar.db.model.Manufacturer;
-import com.guitar.db.repository.ManufacturerRepository;
+import static org.junit.Assert.assertEquals;
 
 @ContextConfiguration(locations={"classpath:com/guitar/db/applicationTests-context.xml"})
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -37,4 +35,12 @@ public class ManufacturerPersistenceTests {
 		List<Manufacturer> mans = manufacturerRepository.getManufacturersThatSellModelsOfType("Semi-Hollow Body Electric");
 		assertEquals(1, mans.size());
 	}
+
+	@Test
+	public void testGetActiveManufacturers() throws Exception{
+		List<Manufacturer> manufacturers = manufacturerRepository.getActiveManufacturers();
+		assertEquals("Fender Musical Instruments Corporation", manufacturers.get(0).getName());
+
+	}
+
 }
