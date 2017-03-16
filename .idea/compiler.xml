@@ -53,7 +53,13 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
-        <module name="ps-guitar-db" />
+      </profile>
+      <profile default="false" name="Annotation profile for spring-security" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="spring-security" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -63,6 +69,7 @@
       <module name="spring-sample" target="1.8" />
       <module name="spring-sample-java-conf" target="1.8" />
       <module name="spring-sample-xml-conf" target="1.8" />
+      <module name="spring-security" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
