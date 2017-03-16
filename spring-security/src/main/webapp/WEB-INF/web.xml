@@ -4,10 +4,27 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
 		 http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
 
+    <!--security configurations-->
+    <filter>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <!--/*-->
+        <!--We're goiing to send every request through this filter mapping-->
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <!--end of security-->
 
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>classpath:/jpaContext.xml</param-value>
+        <param-value>
+            classpath:/jpaContext.xml
+            /WEB-INF/config/security-config.xml
+        </param-value>
     </context-param>
 
     <listener>
