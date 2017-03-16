@@ -22,7 +22,7 @@ public class Model {
 	private int frets;
 	private String woodType;
 	private Date yearFirstMade;
-	
+
 	@ManyToOne
 	private Manufacturer manufacturer;
 
