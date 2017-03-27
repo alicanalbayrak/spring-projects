@@ -56,7 +56,8 @@
         <a class="btn btn-primary" href="addGoal.html">
           Add Goal
         </a>
-        
+
+
         <a class="btn btn-primary" href="addMinutes.html">
           Add Exercise Minutes
         </a>
