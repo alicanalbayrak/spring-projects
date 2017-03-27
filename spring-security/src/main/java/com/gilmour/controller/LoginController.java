@@ -19,4 +19,9 @@ public class LoginController {
 		// tells internalViewResolver /WEB-INF/jsp/ directory look for login.jsp
 	}
 
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String logout(ModelMap model) {
+		System.out.println("logging out");
+		return "logout";
+	}
 }

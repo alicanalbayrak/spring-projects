@@ -67,6 +67,8 @@
         <a class="btn btn-primary" href="addMinutes.html">
           Add Exercise Minutes
         </a>
+
+        <a class="btn btn-warning" href="/logout">Logout >> </a>
       </div>
       <div>
       </div>
